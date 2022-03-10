@@ -1,4 +1,4 @@
-package main
+package dtime
 
 type Dtime struct {
 	year, month, day     int

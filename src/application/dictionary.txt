@@ -1,0 +1,7 @@
+pristine:         							bez poskvrny, dokonale čistý
+stomp:            							dupat, pochodovat
+presumable:      								pravděpodobný, předpokládaný, předpokládatelný, očekávatelný
+infeasible:       							neproveditelný, neuskutečnitelný
+occurence:        							událost, příhoda, případ, výskyt
+She stomped off.:								Odmašírovala.
+He stomped out of the room.:		Vypochodoval z pokoje.
