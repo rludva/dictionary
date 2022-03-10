@@ -17,15 +17,18 @@ type Dictionary struct {
 	items []DictionaryItem
 }
 
-func (d *Dictionary) AddItem(line string) {
-	i := DictionaryItem{"hello", "ahoj"}
-	d.items = append(d.items, i)
-	// s := strings.Split(line, ":")
-	// item := strings.Trim(s[0], "\t ")
-	// content := strings.Trim(s[1], "\t ")
+// pre unit testing code for AddIitem..
+// s := strings.Split(line, ":")
+// item := strings.Trim(s[0], "\t ")
+// content := strings.Trim(s[1], "\t ")
 
-	// i := DictionaryItem{item, content, dtime.Dtime{}, dtime.Dtime{}}
-	// d.items = append(d.items, i)
+// i := DictionaryItem{item, content, dtime.Dtime{}, dtime.Dtime{}}
+// d.items = append(d.items, i)
+
+func AddItem(Dictionary, string) Dictionary {
+	i := DictionaryItem{"hello", "ahoj"}
+	d := Dictionary{[]DictionaryItem{i}}
+	return d
 }
 
 func (d *Dictionary) ReadDataFile(filename string) {

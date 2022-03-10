@@ -24,11 +24,8 @@ func TestAddItem(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		pre := tc.d
-		tc.d.AddItem(tc.line)
-		after := tc.d
-		if !reflect.DeepEqual(after, tc.nextd) {
-			t.Errorf("%v.AddItem(%v) -> %v, expected %v", pre, tc.line, after, tc.nextd)
+		if gotDictionary := AddItem(tc.d, tc.line); !reflect.DeepEqual(gotDictionary, tc.nextd) {
+			t.Errorf("%v.AddItem(%v): %v, expected %v", tc.d, tc.line, gotDictionary, tc.nextd)
 		}
 	}
 }
