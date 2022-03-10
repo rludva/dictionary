@@ -21,6 +21,68 @@ func TestAddItem(t *testing.T) {
 				},
 			},
 		},
+		{
+			Dictionary{},
+			"hello:ahoj,nazdar",
+			Dictionary{
+				[]DictionaryItem{
+					DictionaryItem{"hello", "ahoj,nazdar"},
+				},
+			},
+		},
+		{
+			Dictionary{
+				[]DictionaryItem{
+					DictionaryItem{"sun", "slunce"},
+				},
+			},
+			"hello:ahoj",
+			Dictionary{
+				[]DictionaryItem{
+					DictionaryItem{"sun", "slunce"},
+					DictionaryItem{"hello", "ahoj"},
+				},
+			},
+		},
+		{
+			Dictionary{},
+			"hello:  	ahoj  ",
+			Dictionary{
+				[]DictionaryItem{
+					DictionaryItem{"hello", "ahoj"},
+				},
+			},
+		},
+		{
+			Dictionary{},
+			"   hello       :  	ahoj  ",
+			Dictionary{
+				[]DictionaryItem{
+					DictionaryItem{"hello", "ahoj"},
+				},
+			},
+		},
+		{
+			Dictionary{},
+			"hello:",
+			Dictionary{
+				[]DictionaryItem{},
+			},
+		},
+		{
+			Dictionary{},
+			":ahoj",
+			Dictionary{
+				[]DictionaryItem{},
+			},
+		},
+		{
+			Dictionary{},
+			"Lorem ipsum dolor sit amet..",
+			Dictionary{
+				[]DictionaryItem{},
+			},
+		},
 	}
 
 	for _, tc := range testCases {

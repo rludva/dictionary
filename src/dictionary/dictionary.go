@@ -1,11 +1,6 @@
 package dictionary
 
 import (
-	"bufio"
-	"fmt"
-	"log"
-	"math/rand"
-	"os"
 	"strings"
 )
 
@@ -17,20 +12,21 @@ type Dictionary struct {
 	items []DictionaryItem
 }
 
-// pre unit testing code for AddIitem..
-// s := strings.Split(line, ":")
-// item := strings.Trim(s[0], "\t ")
-// content := strings.Trim(s[1], "\t ")
+func AddItem(dict Dictionary, line string) Dictionary {
+	items := []DictionaryItem{}
+	s := strings.Split(line, ":")
+	if len(s) == 2 {
+		item := strings.Trim(s[0], "\t ")
+		content := strings.Trim(s[1], "\t ")
 
-// i := DictionaryItem{item, content, dtime.Dtime{}, dtime.Dtime{}}
-// d.items = append(d.items, i)
-
-func AddItem(Dictionary, string) Dictionary {
-	i := DictionaryItem{"hello", "ahoj"}
-	d := Dictionary{[]DictionaryItem{i}}
-	return d
+		if item != "" && content != "" {
+			items = append(dict.items, DictionaryItem{item, content})
+		}
+	}
+	return Dictionary{items}
 }
 
+/*
 func (d *Dictionary) ReadDataFile(filename string) {
 	f, err := os.Open(filename)
 	if err != nil {
@@ -40,7 +36,7 @@ func (d *Dictionary) ReadDataFile(filename string) {
 
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
-		d.AddItem(scanner.Text())
+		d = AddItem(d, scanner.Text())
 	}
 
 	if err := scanner.Err(); err != nil {
@@ -145,3 +141,4 @@ func (d *Dictionary) PracticeContent(item DictionaryItem) {
 		d.PracticeContent(item)
 	}
 }
+*/
