@@ -2,7 +2,6 @@ package dictionary
 
 import (
 	"bufio"
-	"dtime"
 	"fmt"
 	"log"
 	"math/rand"
@@ -12,22 +11,21 @@ import (
 
 type DictionaryItem struct {
 	item, content string
-	created        dtime.Dtime
-	refresh        dtime.Dtime
 }
 
 type Dictionary struct {
-	name string
 	items []DictionaryItem
 }
 
 func (d *Dictionary) AddItem(line string) {
-	s := strings.Split(line, ":")
-	item := strings.Trim(s[0], "\t ")
-	content := strings.Trim(s[1], "\t ")
-
-	i := DictionaryItem{item, content, dtime.Dtime{}, dtime.Dtime{}}
+	i := DictionaryItem{"hello", "ahoj"}
 	d.items = append(d.items, i)
+	// s := strings.Split(line, ":")
+	// item := strings.Trim(s[0], "\t ")
+	// content := strings.Trim(s[1], "\t ")
+
+	// i := DictionaryItem{item, content, dtime.Dtime{}, dtime.Dtime{}}
+	// d.items = append(d.items, i)
 }
 
 func (d *Dictionary) ReadDataFile(filename string) {
