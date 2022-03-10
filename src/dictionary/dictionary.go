@@ -16,8 +16,8 @@ func AddItem(dict Dictionary, line string) Dictionary {
 	items := []DictionaryItem{}
 	s := strings.Split(line, ":")
 	if len(s) == 2 {
-		item := strings.Trim(s[0], "\t ")
-		content := strings.Trim(s[1], "\t ")
+		item := strings.TrimSpace(s[0])
+		content := strings.TrimSpace(s[1])
 
 		if item != "" && content != "" {
 			items = append(dict.items, DictionaryItem{item, content})
