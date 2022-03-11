@@ -9,10 +9,11 @@ import (
 )
 
 func main() {
+	fmt.Printf("Dictionary v1.0\n")
+
 	d := dictionary.ReadDataFile("./dictionary.txt")
 	rand.Seed(time.Now().UnixNano())
 
-	fmt.Printf("Dictionary v1.0\n")
 	lastword := dictionary.DictionaryItem{}
 	for {
 		word := d.GetRandomItem()
@@ -22,7 +23,7 @@ func main() {
 		}
 		lastword = word
 
-		fmt.Print("\033[H\033[2J")
+		//fmt.Print("\033[H\033[2J")
 		d.PracticeContent(word)
 	}
 }

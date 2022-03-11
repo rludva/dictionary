@@ -9,6 +9,12 @@ import (
 	"strings"
 )
 
+//
+// Example of line for the dictionary:
+// hello:  ahoj, čau, zdar
+const CONTENT_SEPARATOR = ","
+const ITEM_SEPARATOR = ":"
+
 type DictionaryItem struct {
 	item, content string
 }
@@ -19,7 +25,7 @@ type Dictionary struct {
 
 func AddItem(dict Dictionary, line string) Dictionary {
 	items := []DictionaryItem{}
-	s := strings.Split(line, ":")
+	s := strings.Split(line, ITEM_SEPARATOR)
 	if len(s) == 2 {
 		item := strings.TrimSpace(s[0])
 
@@ -30,6 +36,47 @@ func AddItem(dict Dictionary, line string) Dictionary {
 		}
 	}
 	return Dictionary{items}
+}
+
+func (d Dictionary) IsCorrect(item, contentItem string) bool {
+	for _, w := range d.items {
+
+		// Search for the same item in the items..
+		if cmp := strings.Compare(item, w.item); cmp != 0 {
+			continue
+		}
+
+		// Get conent words and search for the same content "item"..
+		contentItems := strings.Split(w.content, CONTENT_SEPARATOR)
+		for _, v := range contentItems {
+			v = strings.TrimSpace(v)
+			if cmp := strings.Compare(contentItem, v); cmp == 0 {
+				return true
+			}
+		}
+	}
+
+	return false
+}
+
+func (d Dictionary) IsCorrectContent(contentItem, item string) bool {
+	for _, w := range d.items {
+
+		contentItems := strings.Split(w.content, CONTENT_SEPARATOR)
+		for _, v := range contentItems {
+			v = strings.TrimSpace(v)
+
+			// Search contenItems for contentItem..
+			if cmp := strings.Compare(contentItem, v); cmp == 0 {
+
+				// Matches the contentItem dictionary item?
+				if cmp := strings.Compare(item, w.item); cmp == 0 {
+					return true
+				}
+			}
+		}
+	}
+	return false
 }
 
 func ReadDataFile(filename string) Dictionary {
@@ -61,47 +108,6 @@ func (d Dictionary) PrintDictionary() {
 	}
 }
 
-func (d Dictionary) IsCorrect(item, content string) bool {
-	for _, w := range d.items {
-		//		fmt.Printf("-> Comparing(%q, %q)\n", item, w.item)
-		if cmp := strings.Compare(item, w.item); cmp != 0 {
-			continue
-		}
-
-		contentWords := strings.Split(w.content, ",")
-		//		fmt.Printf("content words: %q\n", contentWords)
-		for _, v := range contentWords {
-			v = strings.Trim(v, " \t")
-			//			fmt.Printf("-> Comparingcontent(%q, %q)\n", content, v)
-			if cmp := strings.Compare(content, v); cmp == 0 {
-				return true
-			}
-		}
-	}
-	return false
-}
-
-func (d Dictionary) IsCorrectContent(content, item string) bool {
-	for _, w := range d.items {
-		// fmt.Printf("-> Comparing(%q, %q) with: (%q, %q)\n", w.item, w.content, item, content)
-		contentWords := strings.Split(w.content, ",")
-		// fmt.Printf(" - contentWord = %q\n", contentWords)
-		for _, v := range contentWords {
-			v = strings.Trim(v, " \t")
-			// fmt.Printf(" - porovnávám %q s %q\n", content, v)
-			if cmp := strings.Compare(content, v); cmp == 0 {
-				// fmt.Printf(" - české slovo nalezeno\n")
-				// fmt.Printf(" - porovnávám: %q a %q\n", item, w.item)
-				if cmp := strings.Compare(item, w.item); cmp == 0 {
-					// fmt.Printf(" - Porovnání OK\n")
-					return true
-				}
-			}
-		}
-	}
-	return false
-}
-
 func (d Dictionary) GetRandomItem() DictionaryItem {
 	numberOfItems := len(d.items)
 
@@ -117,7 +123,7 @@ func (d Dictionary) PracticeItem(item DictionaryItem) {
 
 	reader := bufio.NewReader(os.Stdin)
 	answer, _ := reader.ReadString('\n')
-	answer = strings.Trim(answer, " \t\n")
+	answer = strings.TrimSpace(answer)
 
 	if !d.IsCorrect(i, answer) {
 		fmt.Printf("Incorrect!\n")
@@ -131,18 +137,17 @@ func (d Dictionary) PracticeContent(item DictionaryItem) {
 	i := item.item
 	c := item.content
 
-	contentItems := strings.Split(c, ",")
+	contentItems := strings.Split(c, CONTENT_SEPARATOR)
 	numberOfContentItems := len(contentItems)
 	randomIndex := rand.Intn(numberOfContentItems)
 	contentItem := contentItems[randomIndex]
-	contentItem = strings.Trim(contentItem, " \t")
+	contentItem = strings.TrimSpace(contentItem)
 
 	fmt.Printf("%q: ", contentItem)
 	reader := bufio.NewReader(os.Stdin)
 	answer, _ := reader.ReadString('\n')
-	answer = strings.Trim(answer, " \t\n")
+	answer = strings.TrimSpace(answer)
 
-	//fmt.Printf("IsCorrectMother(%q, %q)\n", contentWord, answer)
 	if !d.IsCorrectContent(contentItem, answer) {
 		fmt.Printf("Incorrect!\n")
 		fmt.Printf("%q: %q\n\n", i, c)
