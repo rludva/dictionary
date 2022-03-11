@@ -1,6 +1,11 @@
 package dictionary
 
 import (
+	"bufio"
+	"fmt"
+	"log"
+	"math/rand"
+	"os"
 	"strings"
 )
 
@@ -17,6 +22,7 @@ func AddItem(dict Dictionary, line string) Dictionary {
 	s := strings.Split(line, ":")
 	if len(s) == 2 {
 		item := strings.TrimSpace(s[0])
+
 		content := strings.TrimSpace(s[1])
 
 		if item != "" && content != "" {
@@ -26,8 +32,7 @@ func AddItem(dict Dictionary, line string) Dictionary {
 	return Dictionary{items}
 }
 
-/*
-func (d *Dictionary) ReadDataFile(filename string) {
+func ReadDataFile(filename string) Dictionary {
 	f, err := os.Open(filename)
 	if err != nil {
 		log.Fatal(err)
@@ -35,6 +40,8 @@ func (d *Dictionary) ReadDataFile(filename string) {
 	defer f.Close()
 
 	scanner := bufio.NewScanner(f)
+	d := Dictionary{}
+
 	for scanner.Scan() {
 		d = AddItem(d, scanner.Text())
 	}
@@ -42,9 +49,11 @@ func (d *Dictionary) ReadDataFile(filename string) {
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
+
+	return d
 }
 
-func (d *Dictionary) PrintDictionary() {
+func (d Dictionary) PrintDictionary() {
 	i := 1
 	for _, w := range d.items {
 		fmt.Printf("%d %q %q\n", i, w.item, w.content)
@@ -52,7 +61,7 @@ func (d *Dictionary) PrintDictionary() {
 	}
 }
 
-func (d *Dictionary) IsCorrect(item, content string) bool {
+func (d Dictionary) IsCorrect(item, content string) bool {
 	for _, w := range d.items {
 		//		fmt.Printf("-> Comparing(%q, %q)\n", item, w.item)
 		if cmp := strings.Compare(item, w.item); cmp != 0 {
@@ -72,7 +81,7 @@ func (d *Dictionary) IsCorrect(item, content string) bool {
 	return false
 }
 
-func (d *Dictionary) IsCorrectContent(content, item string) bool {
+func (d Dictionary) IsCorrectContent(content, item string) bool {
 	for _, w := range d.items {
 		// fmt.Printf("-> Comparing(%q, %q) with: (%q, %q)\n", w.item, w.content, item, content)
 		contentWords := strings.Split(w.content, ",")
@@ -93,7 +102,7 @@ func (d *Dictionary) IsCorrectContent(content, item string) bool {
 	return false
 }
 
-func (d *Dictionary) GetRandomItem() DictionaryItem {
+func (d Dictionary) GetRandomItem() DictionaryItem {
 	numberOfItems := len(d.items)
 
 	randomIndex := rand.Intn(numberOfItems)
@@ -101,7 +110,7 @@ func (d *Dictionary) GetRandomItem() DictionaryItem {
 	return word
 }
 
-func (d *Dictionary) PracticeItem(item DictionaryItem) {
+func (d Dictionary) PracticeItem(item DictionaryItem) {
 	i := item.item
 	c := item.content
 	fmt.Printf("%q: ", i)
@@ -118,7 +127,7 @@ func (d *Dictionary) PracticeItem(item DictionaryItem) {
 	}
 }
 
-func (d *Dictionary) PracticeContent(item DictionaryItem) {
+func (d Dictionary) PracticeContent(item DictionaryItem) {
 	i := item.item
 	c := item.content
 
@@ -141,4 +150,3 @@ func (d *Dictionary) PracticeContent(item DictionaryItem) {
 		d.PracticeContent(item)
 	}
 }
-*/

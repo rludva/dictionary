@@ -1,18 +1,18 @@
 package main
 
 import (
-	"dictionary"
 	"fmt"
 	"math/rand"
 	"time"
+
+	"github.com/rludva/dictionary/src/dictionary"
 )
 
 func main() {
-	d := dictionary.Dictionary{}
+	d := dictionary.ReadDataFile("./dictionary.txt")
 	rand.Seed(time.Now().UnixNano())
 
 	fmt.Printf("Dictionary v1.0\n")
-	d.ReadDataFile("./dictionary.txt")
 	lastword := dictionary.DictionaryItem{}
 	for {
 		word := d.GetRandomItem()

@@ -5,3 +5,4 @@ infeasible:       							neproveditelný, neuskutečnitelný
 occurence:        							událost, příhoda, případ, výskyt
 She stomped off.:								Odmašírovala.
 He stomped out of the room.:		Vypochodoval z pokoje.
+inhibit:												zbrzdit, zpomalovat, tlumit, potlačovat, inhibovat
