@@ -17,7 +17,7 @@ func TestAddItem(t *testing.T) {
 			"hello:ahoj",
 			Dictionary{
 				[]DictionaryItem{
-					DictionaryItem{"hello", "ahoj"},
+					{"hello", "ahoj"},
 				},
 			},
 		},
@@ -26,21 +26,21 @@ func TestAddItem(t *testing.T) {
 			"hello:ahoj,nazdar",
 			Dictionary{
 				[]DictionaryItem{
-					DictionaryItem{"hello", "ahoj,nazdar"},
+					{"hello", "ahoj,nazdar"},
 				},
 			},
 		},
 		{
 			Dictionary{
 				[]DictionaryItem{
-					DictionaryItem{"sun", "slunce"},
+					{"sun", "slunce"},
 				},
 			},
 			"hello:ahoj",
 			Dictionary{
 				[]DictionaryItem{
-					DictionaryItem{"sun", "slunce"},
-					DictionaryItem{"hello", "ahoj"},
+					{"sun", "slunce"},
+					{"hello", "ahoj"},
 				},
 			},
 		},
@@ -49,7 +49,7 @@ func TestAddItem(t *testing.T) {
 			"hello:  	ahoj  ",
 			Dictionary{
 				[]DictionaryItem{
-					DictionaryItem{"hello", "ahoj"},
+					{"hello", "ahoj"},
 				},
 			},
 		},
@@ -58,7 +58,7 @@ func TestAddItem(t *testing.T) {
 			"   hello       :  	ahoj  ",
 			Dictionary{
 				[]DictionaryItem{
-					DictionaryItem{"hello", "ahoj"},
+					{"hello", "ahoj"},
 				},
 			},
 		},
