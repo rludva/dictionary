@@ -8,12 +8,12 @@ import (
 )
 
 // useCmd represents the use command
-var RandomContnetCmd = &cobra.Command{
-	Use:   "random-content",
-	Short: "Practice one random contnet from the dictionary",
+var RandomItemCmd = &cobra.Command{
+	Use:   "random-item",
+	Short: "Practice one random item from the dictionary",
 	Run: func(cmd *cobra.Command, args []string) {
 		item := vars.DefaultDictionary.GetRandomItem()
-		vars.DefaultDictionary.PracticeContent(item)
+		vars.DefaultDictionary.PracticeItem(item)
 		os.Exit(0)
 	},
 }

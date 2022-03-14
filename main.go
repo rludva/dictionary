@@ -8,6 +8,8 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/rludva/dictionary/cmd"
+	"github.com/rludva/dictionary/src/dictionary"
+	"github.com/rludva/dictionary/vars"
 )
 
 // RootCmd represents the base command when called without any subcommands
@@ -22,30 +24,25 @@ func Execute() {
 	cobra.CheckErr(RootCmd.Execute())
 }
 
-func main() {
+func initConfig() {
 	rand.Seed(time.Now().UnixNano())
 
+	if vars.DictionaryFileName == "" {
+		vars.DictionaryFileName = "./dictionary.txt"
+	}
+
+	vars.DefaultDictionary = dictionary.ReadDataFile("./dictionary.txt")
+}
+
+func init() {
+	cobra.OnInitialize(initConfig)
+
 	RootCmd.AddCommand(cmd.VersionCmd)
-	RootCmd.AddCommand(cmd.PracticeItemsCmd)
-	RootCmd.AddCommand(cmd.PracticeContnetCmd)
+	RootCmd.AddCommand(cmd.RandomItemCmd)
+	RootCmd.AddCommand(cmd.RandomContnetCmd)
+	RootCmd.AddCommand(cmd.PrintCmd)
+}
+
+func main() {
 	RootCmd.Execute()
-	/*
-		fmt.Printf("Dictionary v1.0\n")
-
-		d := dictionary.ReadDataFile("./dictionary.txt")
-
-		lastitem := dictionary.DictionaryItem{}
-		for {
-			item := d.GetRandomItem()
-
-			// If new word is the same like the previous, let's try another one..
-			if item == lastitem {
-				item = d.GetRandomItem()
-			}
-			lastitem = item
-
-			//fmt.Print("\033[H\033[2J")
-			d.PracticeContent(item)
-		}
-	*/
 }

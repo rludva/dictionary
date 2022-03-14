@@ -100,7 +100,7 @@ func ReadDataFile(filename string) Dictionary {
 	return d
 }
 
-func (d Dictionary) PrintDictionary() {
+func (d Dictionary) Print() {
 	i := 1
 	for _, w := range d.items {
 		fmt.Printf("%d %q %q\n", i, w.item, w.content)

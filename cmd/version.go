@@ -2,11 +2,9 @@ package cmd
 
 import (
 	"fmt"
-
 	"os"
 
 	"github.com/rludva/dictionary/vars"
-
 	"github.com/spf13/cobra"
 )
 
