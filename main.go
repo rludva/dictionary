@@ -41,6 +41,11 @@ func init() {
 	RootCmd.AddCommand(cmd.RandomItemCmd)
 	RootCmd.AddCommand(cmd.RandomContnetCmd)
 	RootCmd.AddCommand(cmd.PrintCmd)
+
+	cmd.PracticeItemCmd.Flags().BoolVarP(&vars.PracticeAll, "all", "a", false, "Practice content and items")
+	cmd.PracticeItemCmd.Flags().BoolVarP(&vars.PracticeContent, "content", "c", false, "Practice content")
+	cmd.PracticeItemCmd.Flags().BoolVarP(&vars.PracticeItem, "item", "i", false, "Practice item")
+	RootCmd.AddCommand(cmd.PracticeItemCmd)
 }
 
 func main() {
