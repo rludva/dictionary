@@ -9,7 +9,7 @@ import (
 )
 
 // useCmd represents the use command
-var PracticeItemCmd = &cobra.Command{
+var PracticeCmd = &cobra.Command{
 	Use:   "practice",
 	Short: "Practice random item",
 	Run: func(cmd *cobra.Command, args []string) {
