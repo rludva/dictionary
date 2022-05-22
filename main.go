@@ -26,12 +26,6 @@ func Execute() {
 
 func initConfig() {
 	rand.Seed(time.Now().UnixNano())
-
-	if vars.DictionaryFileName == "" {
-		vars.DictionaryFileName = "./dictionary.txt"
-	}
-
-	vars.DefaultDictionary = dictionary.ReadDataFile("./dictionary.txt")
 }
 
 func init() {
@@ -45,7 +39,18 @@ func init() {
 	cmd.PracticeCmd.Flags().BoolVarP(&vars.PracticeAll, "all", "a", false, "Practice randomly content or item")
 	cmd.PracticeCmd.Flags().BoolVarP(&vars.PracticeContent, "content", "c", false, "Practice content")
 	cmd.PracticeCmd.Flags().BoolVarP(&vars.PracticeItem, "item", "i", false, "Practice item")
+	cmd.PracticeCmd.Flags().IntVarP(&vars.PracticeCounter, "counter", "o", 10, "Number of practice cycles")
 	RootCmd.AddCommand(cmd.PracticeCmd)
+
+	RootCmd.AddCommand(cmd.DictionaryFileCmd)
+	cmd.DictionaryFileCmd.Flags().StringVarP(&vars.DictionaryFileName, "data", "f", vars.DictionaryFileName, "Read dictionary from file")
+	if true {
+		if vars.DictionaryFileName == "" {
+			vars.DictionaryFileName = "./dictionary.txt"
+		}
+
+		vars.DefaultDictionary = dictionary.ReadDataFile(vars.DictionaryFileName)
+	}
 }
 
 func main() {

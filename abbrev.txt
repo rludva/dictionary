@@ -1,0 +1,6 @@
+SNO:		Single Node OpenShift
+RHEL:		Red Hat Enterprise Linux
+CVO:		Cluster Version Operator
+MCP:    Machine Config Pool
+RHACS:	Red Hat Advanced Cluster Security
+ACS:		Advanced Cluster Security (Formerly StackRox)

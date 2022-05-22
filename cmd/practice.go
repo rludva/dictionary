@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"fmt"
 	"math/rand"
 	"os"
 
@@ -23,11 +24,14 @@ var PracticeCmd = &cobra.Command{
 			}
 		}
 
-		if vars.PracticeContent {
-			vars.DefaultDictionary.PracticeContent(item)
-		}
-		if vars.PracticeItem {
-			vars.DefaultDictionary.PracticeItem(item)
+		for counter := 0; counter < vars.PracticeCounter; counter++ {
+			fmt.Printf("Counter: %v, PracticeCounter: %v\n", counter, vars.PracticeCounter)
+			if vars.PracticeContent {
+				vars.DefaultDictionary.PracticeContent(item)
+			}
+			if vars.PracticeItem {
+				vars.DefaultDictionary.PracticeItem(item)
+			}
 		}
 
 		os.Exit(0)
