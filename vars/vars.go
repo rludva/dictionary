@@ -7,6 +7,6 @@ var DictionaryFileName string
 var DefaultDictionary dictionary.Dictionary
 
 var PracticeAll bool
-var PracticeContent bool
 var PracticeItem bool
+var PracticeContent bool
 var PracticeCounter int

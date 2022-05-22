@@ -37,8 +37,8 @@ func init() {
 	RootCmd.AddCommand(cmd.PrintCmd)
 
 	cmd.PracticeCmd.Flags().BoolVarP(&vars.PracticeAll, "all", "a", false, "Practice randomly content or item")
-	cmd.PracticeCmd.Flags().BoolVarP(&vars.PracticeContent, "content", "c", false, "Practice content")
 	cmd.PracticeCmd.Flags().BoolVarP(&vars.PracticeItem, "item", "i", false, "Practice item")
+	cmd.PracticeCmd.Flags().BoolVarP(&vars.PracticeContent, "content", "c", false, "Practice content")
 	cmd.PracticeCmd.Flags().IntVarP(&vars.PracticeCounter, "counter", "o", 10, "Number of practice cycles")
 	RootCmd.AddCommand(cmd.PracticeCmd)
 

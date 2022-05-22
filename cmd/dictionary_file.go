@@ -14,5 +14,3 @@ var DictionaryFileCmd = &cobra.Command{
 		vars.DefaultDictionary = dictionary.ReadDataFile(vars.DictionaryFileName)
 	},
 }
-
-

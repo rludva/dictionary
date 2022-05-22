@@ -155,6 +155,3 @@ func (d Dictionary) PracticeContent(item DictionaryItem) {
 		d.PracticeContent(item)
 	}
 }
-
-func (d Dictionary) PracticeCycle() {
-}
