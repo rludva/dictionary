@@ -1,6 +1,9 @@
 #!/bin/bash
 
-OUTPUT_DIRECTORY="./output"
+# Load common dependencies for bash scripts..
+MY_PATH=$(dirname "$0")
+
+OUTPUT_DIRECTORY="$MY_PATH/../output"
 if [ ! -e "$OUTPUT_DIRECTORY" ]; then
   mkdir $OUTPUT_DIRECTORY
 fi
