@@ -9,17 +9,17 @@ if [ ! -e "$OUTPUT_DIRECTORY" ]; then
 fi
 
 function build() {
-	GOOS="$1"
-	GOARCH="$2"
+  GOOS="$1"
+  GOARCH="$2"
 
-	echo "Building for $GOOS/$GOARCH.."
+  echo "Building for $GOOS/$GOARCH.."
 
-	OUTPUT="$OUTPUT_DIRECTORY/dictionary_${GOOS}_${GOARCH}"
+  OUTPUT="$OUTPUT_DIRECTORY/dictionary_${GOOS}_${GOARCH}"
   if [ -e "$OUTPUT" ]; then
-		rm "$OUTPUT"
+    rm "$OUTPUT"
   fi
 
-	env GOOS="$GOOS" GOARCH="$GOARCH" go build -o "$OUTPUT"
+  env GOOS="$GOOS" GOARCH="$GOARCH" go build -o "$OUTPUT"
 }
 
 build linux amd64

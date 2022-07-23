@@ -2,8 +2,8 @@
 Practice and learn dictionary..
 
 ## Dictionary structure
-hello:		 		   ahoj, nazdar, čau
-hello world:		 nazdar světe
+hello:            ahoj, nazdar, čau
+hello world:      nazdar světe
 
 ### Terms:
 * In the dictionary there are two terms: `item` and `content`:

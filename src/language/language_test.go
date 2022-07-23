@@ -14,8 +14,8 @@ func TestNoAccent(t *testing.T) {
   }
 
   for _, tc := range testCases {
-		if got := NoAccent(tc.input); got != tc.expectedOutput {
-			t.Errorf("NoAccent(`%v`): `%v`, expected `%v`", tc.input, got, tc.expectedOutput)
-		}
-	}
+    if got := NoAccent(tc.input); got != tc.expectedOutput {
+      t.Errorf("NoAccent(`%v`): `%v`, expected `%v`", tc.input, got, tc.expectedOutput)
+    }
+  }
 }
