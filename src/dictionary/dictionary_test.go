@@ -83,6 +83,19 @@ func TestAddItem(t *testing.T) {
 				[]DictionaryItem{},
 			},
 		},
+		{
+			Dictionary{
+				[]DictionaryItem{
+					{"sun", "slunce"},
+				},
+			},
+			"",
+			Dictionary{
+				[]DictionaryItem{
+					{"sun", "slunce"},
+				},
+			},
+		},
 	}
 
 	for _, tc := range testCases {

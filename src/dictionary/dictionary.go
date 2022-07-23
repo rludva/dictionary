@@ -28,14 +28,17 @@ func AddItem(dict Dictionary, line string) Dictionary {
 	s := strings.Split(line, ITEM_SEPARATOR)
 	if len(s) == 2 {
 		item := strings.TrimSpace(s[0])
-
 		content := strings.TrimSpace(s[1])
 
 		if item != "" && content != "" {
 			items = append(dict.items, DictionaryItem{item, content})
 		}
+		return Dictionary{items}
 	}
-	return Dictionary{items}
+	if dict.items == nil {
+		return Dictionary{[]DictionaryItem{}}
+	}
+	return dict
 }
 
 func (d Dictionary) IsCorrect(item, contentItem string) bool {
